@@ -9,15 +9,93 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+//定义全局变量
+
+float cameraSpeed=5.0f;//摄像机移动速度
+glm::vec3 cameraFront= glm::vec3(0.0f,0.0f,-1.0f);
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+
+float deltaTime = 0.0f; // 当前帧与上一帧的时间差
+float lastFrame = 0.0f; // 上一帧的时间
+float currentFrame = 0.0f;
+
+bool firstMouse = true;
+float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
+float pitch = 0.0f;
+float lastX = 800.0f / 2.0;
+float lastY = 600.0 / 2.0;
+float fov = 45.0f;
+
+
+
+
+
 // ********************************************
 // ************** 回调函数定义区 **************
 // ********************************************
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos;
+    lastX = xpos;
+    lastY = ypos;
+
+    float sensitivity = 0.05;
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
+
+    yaw += xoffset;
+    pitch += yoffset;
+
+    if (pitch > 89.0f)
+        pitch = 89.0f;
+    if (pitch < -89.0f)
+        pitch = -89.0f;
+
+    glm::vec3 front;
+    front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.y = sin(glm::radians(pitch));
+    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    cameraFront = glm::normalize(front);
+}
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    if (fov >= 1.0f && fov <= 45.0f)
+        fov -= yoffset;
+    if (fov <= 1.0f)
+        fov = 1.0f;
+    if (fov >= 45.0f)
+        fov = 45.0f;
+}
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
     // 当用户按下ESC键,我们设置window窗口的WindowShouldClose属性为true
     // 关闭应用程序
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GL_TRUE);
+
+    // 处理AWSD键移动相机位置
+    float cameraMove = cameraSpeed * deltaTime;
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        cameraPos += cameraMove * cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        cameraPos -= cameraMove * cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraMove;
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraMove;
+    
+        
+   
 }
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -59,6 +137,9 @@ int main()
 	//注册回调函数
      glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
      glfwSetKeyCallback(window, key_callback);
+     glfwSetScrollCallback(window, scroll_callback);
+     glfwSetCursorPosCallback(window, mouse_callback);
+
 
 	//设置视口
 	 glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
@@ -67,8 +148,11 @@ int main()
 
     
 
+     //相关设置
+     glEnable(GL_DEPTH_TEST);//启用深度测试
+     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);//鼠标光标不在窗口中显示
+     glfwSetInputMode(window, GLFW_REPEAT, GL_TRUE);
 
-     glEnable(GL_DEPTH_TEST);
     
   // ********************************************
 // *************加载着色器**************
@@ -252,6 +336,9 @@ int main()
     // ==================== 渲染循环区 ====================
     while (!glfwWindowShouldClose(window))
     {
+        currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
         glfwPollEvents();
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -261,10 +348,12 @@ int main()
         // make sure to initialize matrix to identity matrix first
         glm::mat4 view = glm::mat4(1.0f);
         glm::mat4 projection = glm::mat4(1.0f);
-
+        // 使用lookAt函数创建view矩阵
+ 
+        view = glm::lookAt(cameraPos, cameraPos+cameraFront, glm::vec3(0.0f, 1.0f, 0.0f));
         
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-        projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        
+        projection = glm::perspective(glm::radians(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         // retrieve the matrix uniform locations
         unsigned int modelLoc = glGetUniformLocation(ourShader.ID, "model");
         unsigned int viewLoc = glGetUniformLocation(ourShader.ID, "view");
