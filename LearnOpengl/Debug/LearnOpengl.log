@@ -1,11 +1,2 @@
 ﻿  源.cpp
-E:\myLearnOpengl\源.cpp(42,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\myLearnOpengl\源.cpp(43,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\myLearnOpengl\源.cpp(47,19): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-E:\myLearnOpengl\源.cpp(48,19): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-E:\myLearnOpengl\源.cpp(49,13): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\myLearnOpengl\源.cpp(50,13): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\myLearnOpengl\源.cpp(52,23): warning C4305: “初始化”: 从“double”到“float”截断
-E:\myLearnOpengl\源.cpp(73,16): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
-E:\myLearnOpengl\源.cpp(339,35): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
   LearnOpengl.vcxproj -> E:\myLearnOpengl\Debug\LearnOpengl.exe

@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "E:\\myLearnOpengl\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter2\\object_fs.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter2\\object_fs.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter2\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter2\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\Shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:Shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter2\\light_vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter2\\light_vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter2\\object_vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter2\\object_vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter2\\light_fs.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter2\\light_fs.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\headers\\Shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:headers\\Shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\myLearnOpengl\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
@@ -21,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\myLearnOpengl\\LearnOpengl.vcxproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LearnOpengl.vcxproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\fs.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:fs.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 98,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,19 +50,96 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "light_fs.frag",
+              "DocumentMoniker": "E:\\myLearnOpengl\\chapter2\\light_fs.frag",
+              "RelativeDocumentMoniker": "chapter2\\light_fs.frag",
+              "ToolTip": "E:\\myLearnOpengl\\chapter2\\light_fs.frag",
+              "RelativeToolTip": "chapter2\\light_fs.frag",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-02-21T13:09:53.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "light_vs.vs",
+              "DocumentMoniker": "E:\\myLearnOpengl\\chapter2\\light_vs.vs",
+              "RelativeDocumentMoniker": "chapter2\\light_vs.vs",
+              "ToolTip": "E:\\myLearnOpengl\\chapter2\\light_vs.vs",
+              "RelativeToolTip": "chapter2\\light_vs.vs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-02-21T13:09:52.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "object_vs.vs",
+              "DocumentMoniker": "E:\\myLearnOpengl\\chapter2\\object_vs.vs",
+              "RelativeDocumentMoniker": "chapter2\\object_vs.vs",
+              "ToolTip": "E:\\myLearnOpengl\\chapter2\\object_vs.vs",
+              "RelativeToolTip": "chapter2\\object_vs.vs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-02-21T13:08:12.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "object_fs.frag",
+              "DocumentMoniker": "E:\\myLearnOpengl\\chapter2\\object_fs.frag",
+              "RelativeDocumentMoniker": "chapter2\\object_fs.frag",
+              "ToolTip": "E:\\myLearnOpengl\\chapter2\\object_fs.frag",
+              "RelativeToolTip": "chapter2\\object_fs.frag",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-02-21T12:41:32.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "\u6E90.cpp",
+              "DocumentMoniker": "E:\\myLearnOpengl\\chapter2\\\u6E90.cpp",
+              "RelativeDocumentMoniker": "chapter2\\\u6E90.cpp",
+              "ToolTip": "E:\\myLearnOpengl\\chapter2\\\u6E90.cpp",
+              "RelativeToolTip": "chapter2\\\u6E90.cpp",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAuwGIAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-21T09:00:21.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Shader.h",
+              "DocumentMoniker": "E:\\myLearnOpengl\\headers\\Shader.h",
+              "RelativeDocumentMoniker": "headers\\Shader.h",
+              "ToolTip": "E:\\myLearnOpengl\\headers\\Shader.h",
+              "RelativeToolTip": "headers\\Shader.h",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAGYAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-21T08:26:20.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "README.md",
               "DocumentMoniker": "E:\\myLearnOpengl\\README.md",
               "RelativeDocumentMoniker": "README.md",
               "ToolTip": "E:\\myLearnOpengl\\README.md",
               "RelativeToolTip": "README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2025-02-20T10:05:46.718Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "LearnOpengl.vcxproj.user",
               "DocumentMoniker": "E:\\myLearnOpengl\\LearnOpengl.vcxproj.user",
               "RelativeDocumentMoniker": "LearnOpengl.vcxproj.user",
@@ -63,55 +148,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003464|",
               "WhenOpened": "2025-02-20T10:05:46.641Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "fs.frag",
-              "DocumentMoniker": "E:\\myLearnOpengl\\fs.frag",
-              "RelativeDocumentMoniker": "fs.frag",
-              "ToolTip": "E:\\myLearnOpengl\\fs.frag",
-              "RelativeToolTip": "fs.frag",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-02-15T05:52:11.69Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "vs.vs",
-              "DocumentMoniker": "E:\\myLearnOpengl\\vs.vs",
-              "RelativeDocumentMoniker": "vs.vs",
-              "ToolTip": "E:\\myLearnOpengl\\vs.vs",
-              "RelativeToolTip": "vs.vs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-02-15T05:35:45.459Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Shader.h",
-              "DocumentMoniker": "E:\\myLearnOpengl\\Shader.h",
-              "RelativeDocumentMoniker": "Shader.h",
-              "ToolTip": "E:\\myLearnOpengl\\Shader.h",
-              "RelativeToolTip": "Shader.h",
-              "ViewState": "AgIAADcAAAAAAAAAAAAowGIAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-14T14:09:22.643Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "\u6E90.cpp",
-              "DocumentMoniker": "E:\\myLearnOpengl\\\u6E90.cpp",
-              "RelativeDocumentMoniker": "\u6E90.cpp",
-              "ToolTip": "E:\\myLearnOpengl\\\u6E90.cpp",
-              "RelativeToolTip": "\u6E90.cpp",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAJAAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-08T03:17:25.112Z",
-              "EditorCaption": ""
             }
           ]
         },

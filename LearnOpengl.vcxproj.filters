@@ -18,21 +18,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="源.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="headers\camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Shader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vs.vs">
-      <Filter>shader</Filter>
+    <None Include="chapter2\light_fs.frag">
+      <Filter>源文件</Filter>
     </None>
-    <None Include="fs.frag">
-      <Filter>shader</Filter>
+    <None Include="chapter2\light_vs.vs">
+      <Filter>源文件</Filter>
     </None>
+    <None Include="chapter2\object_fs.frag">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="chapter2\object_vs.vs">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="chapter2\源.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

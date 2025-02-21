@@ -18,6 +18,19 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="headers\camera.h" />
+    <ClInclude Include="headers\Shader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="chapter2\light_fs.frag" />
+    <None Include="chapter2\light_vs.vs" />
+    <None Include="chapter2\object_fs.frag" />
+    <None Include="chapter2\object_vs.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="chapter2\源.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -79,7 +92,7 @@
     <LibraryPath>$(SolutionDir)\dependency\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\dependency\include</IncludePath>
+    <IncludePath>$(SolutionDir)\dependency\include;$(SolutionDir)\headers</IncludePath>
     <LibraryPath>$(SolutionDir)\dependency\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -146,16 +159,6 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="源.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Shader.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="vs.vs" />
-    <None Include="fs.frag" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
