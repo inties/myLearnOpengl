@@ -20,16 +20,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\camera.h" />
+    <ClInclude Include="headers\Mesh.h" />
+    <ClInclude Include="headers\Model.h" />
     <ClInclude Include="headers\Shader.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="chapter2\light_fs.frag" />
-    <None Include="chapter2\light_vs.vs" />
-    <None Include="chapter2\object_fs.frag" />
-    <None Include="chapter2\object_vs.vs" />
+    <None Include="chapter4\fragShader.frag" />
+    <None Include="chapter4\singlefs.frag" />
+    <None Include="chapter4\vs.vs" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="chapter2\源.cpp" />
+    <ClCompile Include="chapter4\源.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -84,7 +86,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)\dependency\include</IncludePath>
+    <IncludePath>$(SolutionDir)\dependency\include;$(SolutionDir)\headers</IncludePath>
     <LibraryPath>$(SolutionDir)\dependency\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
