@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "E:\\myLearnOpengl\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter4\\vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter4\\vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter4\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter4\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\headers\\Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:headers\\Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -15,20 +27,8 @@
       "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:headers\\camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter4\\vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter4\\vs.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter4\\fragShader.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter4\\fragShader.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\chapter4\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|solutionrelative:chapter4\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44BA82D4-DFB9-49B3-9A31-8CCDF970E1BC}|LearnOpengl.vcxproj|E:\\myLearnOpengl\\headers\\Shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 98,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,7 +66,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Model.h",
               "DocumentMoniker": "E:\\myLearnOpengl\\headers\\Model.h",
               "RelativeDocumentMoniker": "headers\\Model.h",
@@ -74,12 +74,11 @@
               "RelativeToolTip": "headers\\Model.h",
               "ViewState": "AgIAADYAAAAAAAAAAAAAAE0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-01T10:30:24.85Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-01T10:30:24.85Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Mesh.h",
               "DocumentMoniker": "E:\\myLearnOpengl\\headers\\Mesh.h",
               "RelativeDocumentMoniker": "headers\\Mesh.h",
@@ -87,12 +86,11 @@
               "RelativeToolTip": "headers\\Mesh.h",
               "ViewState": "AgIAADAAAAAAAAAAAAAAADkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-01T10:30:13.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-01T10:30:13.674Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "camera.h",
               "DocumentMoniker": "E:\\myLearnOpengl\\headers\\camera.h",
               "RelativeDocumentMoniker": "headers\\camera.h",
@@ -100,25 +98,24 @@
               "RelativeToolTip": "headers\\camera.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-01T10:30:08.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-01T10:30:08.89Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "\u6E90.cpp",
               "DocumentMoniker": "E:\\myLearnOpengl\\chapter4\\\u6E90.cpp",
               "RelativeDocumentMoniker": "chapter4\\\u6E90.cpp",
               "ToolTip": "E:\\myLearnOpengl\\chapter4\\\u6E90.cpp",
               "RelativeToolTip": "chapter4\\\u6E90.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-01T08:29:47.021Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "fragShader.frag",
               "DocumentMoniker": "E:\\myLearnOpengl\\chapter4\\fragShader.frag",
               "RelativeDocumentMoniker": "chapter4\\fragShader.frag",
@@ -126,31 +123,30 @@
               "RelativeToolTip": "chapter4\\fragShader.frag",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-03-01T04:21:55.15Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-01T04:21:55.15Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "vs.vs",
               "DocumentMoniker": "E:\\myLearnOpengl\\chapter4\\vs.vs",
               "RelativeDocumentMoniker": "chapter4\\vs.vs",
               "ToolTip": "E:\\myLearnOpengl\\chapter4\\vs.vs",
               "RelativeToolTip": "chapter4\\vs.vs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-03-01T04:21:32.282Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "test.cpp",
               "DocumentMoniker": "E:\\myLearnOpengl\\test.cpp",
               "RelativeDocumentMoniker": "test.cpp",
               "ToolTip": "E:\\myLearnOpengl\\test.cpp",
               "RelativeToolTip": "test.cpp",
-              "ViewState": "AgIAAL4AAAAAAAAAAAAswL0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALAAAAAAAAAAAAAewMYAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-01T04:09:46.958Z",
               "EditorCaption": ""
@@ -189,8 +185,7 @@
               "RelativeToolTip": "headers\\Shader.h",
               "ViewState": "AgIAAFgAAAAAAAAAAAAtwG4AAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-21T08:26:20.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T08:26:20.719Z"
             },
             {
               "$type": "Document",

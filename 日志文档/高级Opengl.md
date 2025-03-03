@@ -355,9 +355,86 @@ DrawScaledObjects();
 
 实现细节：
 
-* 创建纹理附件和渲染缓冲附件，两者的区别
+* 创建纹理附件和渲染缓冲附件。两者区别为：
+
+* 一般纹理作为颜色附件、RBO作为深度模板附件
+
+  
 
 
+
+创建帧缓冲区：
+
+```
+// 1. 创建/删除帧缓冲
+glGenFramebuffers(1, &fbo);  
+glDeleteFramebuffers(1, &fbo);
+
+// 2. 绑定帧缓冲
+glBindFramebuffer(GL_FRAMEBUFFER, fbo); 
+
+//3.添加纹理附件
+// 创建空纹理
+glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+
+// 设置过滤参数
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+// 附加纹理到颜色附件
+glFramebufferTexture2D(
+  GL_FRAMEBUFFER, 
+  GL_COLOR_ATTACHMENT0, 
+  GL_TEXTURE_2D, 
+  texture, 
+  0
+);
+
+
+
+// 4. 附加渲染缓冲到深度/模板附件
+
+// 创建RBO并分配内存
+glGenRenderbuffers(1, &rbo);
+glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+
+
+glFramebufferRenderbuffer(
+  GL_FRAMEBUFFER, 
+  GL_DEPTH_STENCIL_ATTACHMENT,
+  GL_RENDERBUFFER, 
+  rbo
+);
+
+
+// 5. 检查完整性
+if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    // 错误处理...
+
+// 6. 切换回默认缓冲
+glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+```
+
+
+
+先渲染到FBO，再采样纹理，渲染到屏幕
+
+```
+
+// 第一遍：渲染到FBO
+glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+RenderScene();
+
+// 第二遍：渲染到屏幕
+glBindFramebuffer(GL_FRAMEBUFFER, 0);
+glDisable(GL_DEPTH_TEST); // 禁用深度测试
+screenShader.use();
+glBindTexture(GL_TEXTURE_2D, texture);
+RenderQuad();
+
+```
 
 
 
@@ -597,7 +674,55 @@ layout (std140) uniform Matrices
 
 ### 实例化
 
+在这一章中，成功通过实例化渲染，渲染了大量物体的同时，保证了渲染的效率。
+
+​	实例化这项技术能够让我们使用**一个渲染调用**来绘制**同一物体的多个实例**，来节省每次绘制物体时**CPU -> GPU的通信**，它只需要一次即可。如果想使用实例化渲染，我们只需要将glDrawArrays和glDrawElements的渲染调用分别改为**glDrawArraysInstanced**和**glDrawElementsInstanced**就可以了。
+
+#### 实例化的drawcall
+
+
+
+#### 数据传入
+
+​	由于实例化使用一次drawcall绘制所有实例，我们需要**一次性传入**所有实例需要的数据
+
+
+
+##### 通过uniform变量数组传入
+
+
+
+
+
+##### 通过顶点属性传入
+
+​	和一般的流程一样，暂存到VBO中，然后通过VAO指定着色器中的数据布局，将数据传入着色器。不同的是，一般的VAO是为以一个顶点的数据为一组向着色器传入数据；而在实例化渲染中，**是每个实例为一组**，向着色器传入数据。通过`glVertexAttribDivisor(n, 1)`说明序号为n的顶点属性是以一个实例为一组传入着色器的。
+
+```
+glEnableVertexAttribArray(3); 
+glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)0);
+glVertexAttribDivisor(3, 1);//glVertexAttribDivisor(n, 1) 表示该顶点属性的数据是按实例（per-instance）更新的，而不是按顶点（per-vertex）
+```
+
+
+
+
+
+​	顶点属性最大只能占4个字节，因此下面的声明实际上隐式地占据了3、4、5、6号位置（每个列向量占据一个位置）
+
+```
+layout (location = 3) in mat4 instanceMatrix;
+```
+
+
+
+
+
+
+
 #### 注意事项
+
+**只能针对单一的顶点数据集合（一个 VAO）进行实例化绘制**。
 
 ```
 for (unsigned int i = 0; i < rock.meshes.size(); i++)
@@ -608,6 +733,14 @@ for (unsigned int i = 0; i < rock.meshes.size(); i++)
 }
 ```
 
-为什么glDrawElementsInstanced会被放在循环中？:
+​	rock 是一个复杂的模型，由多个网格（meshes）组成，每个网格有独立的顶点数据和索引数据（分别绑定在不同的 VAO 中）。这就导致了一个问题：**一个 glDrawElementsInstanced 调用无法同时处理多个不同的网格**。
 
-glDrawElementsInstanced 本身确实能一次性绘制多个实例，但它有一个前提：**它只能针对单一的顶点数据集合（一个 VAO）进行实例化绘制**。在你的代码中，rock 是一个复杂的模型，由多个网格（meshes）组成，每个网格有独立的顶点数据和索引数据（分别绑定在不同的 VAO 中）。这就导致了一个问题：**一个 glDrawElementsInstanced 调用无法同时处理多个不同的网格**。
+
+
+| 特性             | `glDrawElements`                         | `glDrawArrays`                               |
+| ---------------- | ---------------------------------------- | -------------------------------------------- |
+| **顶点索引方式** | 使用索引数组间接引用顶点数据             | 直接按顺序使用顶点数组中的数据               |
+| **内存效率**     | 更高效，支持顶点复用，减少重复顶点数据   | 不支持顶点复用，可能需要重复存储相同顶点数据 |
+| **灵活性**       | 更灵活，适合复杂模型（如共享顶点的网格） | 简单直接，适合简单几何形状                   |
+| **参数复杂度**   | 需要额外的索引数组和索引类型参数         | 参数更少，使用更简单                         |
+| **适用场景**     | 复杂模型（如网格、地形、模型加载）       | 简单几何体（如矩形、立方体、点云）           |
