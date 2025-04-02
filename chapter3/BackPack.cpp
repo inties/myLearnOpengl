@@ -9,11 +9,11 @@
 //
 //#include <Shader.h>
 //#include <camera.h>
+//#include<Utils.h>
 //
 //#include <iostream>
 //#include<Model.h>
 //#include<Mesh.h>
-//
 //void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 //void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 //void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
@@ -79,8 +79,8 @@
 //    // -----------------------------
 //    glEnable(GL_DEPTH_TEST);
 //    stbi_set_flip_vertically_on_load(true);
-//    Shader easyShader("easyShader.vs", "easyShader.frag");
-//    Model model("E:/myLearnOpengl/models/backpack");
+//    Shader ourShader("chapter3/easyShader.vs", "chapter3/easyShader.frag");
+//    Model ourModel("E:/myLearnOpengl/models/backpack/backpack.obj");
 //
 //    while (!glfwWindowShouldClose(window))
 //    {
@@ -96,32 +96,28 @@
 //
 //        // render
 //        // ------
-//        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+//        glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 //        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 //
+//        // don't forget to enable shader before setting uniforms
+//        ourShader.use();
+//
+//        // view/projection transformations
+//        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+//        glm::mat4 view = camera.GetViewMatrix();
+//        ourShader.setMat4("projection", projection);
+//        ourShader.setMat4("view", view);
+//
+//        // render the loaded model
+//        glm::mat4 model = glm::mat4(1.0f);
+//        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+//        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+//        ourShader.setMat4("model", model);
+//        ourModel.Draw(ourShader);
 //
 //
-//        // be sure to activate shader when setting uniforms/drawing objects
-//        easyShader.use();
-//
-//
-//        easyShader.setVec3("caremaPos", camera.Position);
-//        // light properties
-//        glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
-//        /*     lightColor.x = static_cast<float>(sin(0.3*glfwGetTime() * 2.0));
-//             lightColor.y = static_cast<float>(sin(0.3 * glfwGetTime() * 0.7));
-//             lightColor.z = static_cast<float>(sin(0.3 * glfwGetTime() * 1.3));*/
-//        glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
-//        glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
-//     
-//
-//        easyShader.setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
-//        easyShader.setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
-//        easyShader.setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
-//        easyShader.setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
-//     
-//
-//        model.Draw(easyShader);
+//        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+//        // -------------------------------------------------------------------------------
 //        glfwSwapBuffers(window);
 //        glfwPollEvents();
 //    }

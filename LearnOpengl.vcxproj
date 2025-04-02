@@ -19,19 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="chapter4\cubemap\textureloader.h" />
     <ClInclude Include="headers\camera.h" />
+    <ClInclude Include="headers\GeometryData.h" />
     <ClInclude Include="headers\Mesh.h" />
     <ClInclude Include="headers\Model.h" />
     <ClInclude Include="headers\Shader.h" />
+    <ClInclude Include="headers\Utils.h" />
+    <ClInclude Include="headers\vertexAtriLoader.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="chapter4\fragShader.frag" />
-    <None Include="chapter4\singlefs.frag" />
-    <None Include="chapter4\vs.vs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="chapter4\源.cpp" />
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="chapter5\Bloom\延迟渲染_hdr.cpp" />
+    <ClCompile Include="headers\textureloader.cpp" />
+    <ClCompile Include="headers\vertexAtriLoader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -88,6 +88,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)\dependency\include;$(SolutionDir)\headers</IncludePath>
     <LibraryPath>$(SolutionDir)\dependency\libs;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)\dependency\include</IncludePath>
@@ -141,7 +142,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

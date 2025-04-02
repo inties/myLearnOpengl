@@ -1,5 +1,17 @@
 #ifndef MESH_H
 #define MESH_H
+//使用指南
+//shader编写时，顶点属性的位置如下
+//layout (location = 0) in vec3 aPos;
+//layout (location = 1) in vec3 aNormal;
+//layout (location = 2) in vec2 aTexCoords;
+
+//纹理采样器名称如下
+//uniform sampler2D texture_diffuse1;
+//uniform sampler2D texture_specular1;
+//uniform sampler2D texture_normal1;
+//uniform sampler2D texture_height1;
+
 
 #include <glew/glew.h> // holds all OpenGL type declarations
 

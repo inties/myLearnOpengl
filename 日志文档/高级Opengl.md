@@ -311,6 +311,8 @@ DrawScaledObjects();
 
 即，如果我们发现三角形顶点是顺时针排列时，认为我们处于三角形的背面。反之处于正面。
 
+​	背面剔除发生在光栅化之前，提前丢弃的三角形甚至不会生成片元，因此是一个重要的优化。
+
 ![img](E:\myLearnOpengl\日志文档\高级Opengl.assets\faceculling_windingorder.png)
 
 #### 注意事项：
@@ -318,6 +320,14 @@ DrawScaledObjects();
 ​	不是所有物体都应该使用面剔除，一般适合于**封闭的不透明物体**。如果是透明物体，背面是能够被看到的；如果是非封闭的物体，例如一张纸，一个平面。如果启用背面剔除，则当我们绕到背后时，此时三角形顶点按逆时针排列，因此这张纸不会被渲染。对于封闭物体来说，例如一个箱子，如果启用了背面剔除，我们飞入箱子内部，发现不会被渲染，也是同样的道理。
 
 
+
+> ​	**背面剔除 vs 深度测试**
+>
+> **背面剔除**：基于几何信息（法线方向和视角），在光栅化之前剔除整个三角形，成本极低。
+>
+> **深度测试**：基于片元深度值，在光栅化之后进行，依赖于深度缓冲区（Z-buffer）。如果没有背面剔除，每个背面三角形都会生成大量片元，增加了片元着色器和深度测试的负担。
+>
+> 即使现代GPU支持early-z优化（在片元着色器之前进行深度测试），背面剔除仍然有优势。因为early-z只有在特定条件下（例如片元着色器不修改深度值）才能生效，而背面剔除无条件适用，且更早地减少了工作量。
 
 
 
@@ -391,7 +401,7 @@ glFramebufferTexture2D(
 
 
 
-// 4. 附加渲染缓冲到深度/模板附件
+// 4. 附加渲染缓冲对象到深度/模板附件
 
 // 创建RBO并分配内存
 glGenRenderbuffers(1, &rbo);
@@ -744,3 +754,71 @@ for (unsigned int i = 0; i < rock.meshes.size(); i++)
 | **灵活性**       | 更灵活，适合复杂模型（如共享顶点的网格） | 简单直接，适合简单几何形状                   |
 | **参数复杂度**   | 需要额外的索引数组和索引类型参数         | 参数更少，使用更简单                         |
 | **适用场景**     | 复杂模型（如网格、地形、模型加载）       | 简单几何体（如矩形、立方体、点云）           |
+
+
+
+
+
+***
+
+### 抗锯齿
+
+​	这一章实现了MSAA，如果想离屏渲染时实现MSAA，需要使用Opengl专门为离屏渲染MSAA准备的多重采样缓冲区。先渲染到该缓冲区，然后再解析到一个单缓冲区（正常的自定义缓冲区），最后再采样这个单缓冲区，和正常的离屏渲染一样。
+
+​	无论三角形遮盖了多少个子采样点，（每个图元中）每个像素只运行**一次**片段着色器。片段着色器使用插值到像素**中心**的顶点数据，然后，MSAA使用更大的深度/模板缓冲区来确定子采样点的覆盖率。被覆盖的子采样点数量将决定了**像素颜色对帧缓冲的影响程度**。
+
+
+
+#### 单渲染缓冲实现MSAA
+
+```
+glfwWindowHint(GLFW_SAMPLES, 4);//在创建窗口之前调用glfwWindowHint来对窗口创建进行提示。
+glEnable(GL_MULTISAMPLE);
+
+```
+
+
+
+
+
+#### 离屏渲染实现MSAA
+
+离屏渲染中使用 MSAA 的目的是在不直接渲染到屏幕的情况下生成抗锯齿效果，通常涉及以下步骤：
+
+* 创建多重采样帧缓冲对象（MSFBO）
+* 渲染场景到 MSFBO
+* 创建中间单采样帧缓冲对象，并解析多采样数据到单采样缓冲
+* 后处理与显示
+
+
+
+**关键数据结构：**
+GL_TEXTURE_2D_MULTISAMPLE：多重采样纹理
+
+```
+glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, textureColorBufferMultiSampled);
+glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, 4, GL_RGB, SCR_WIDTH, SCR_HEIGHT, GL_TRUE);
+```
+
+
+
+
+
+**多重采样纹理（GL_TEXTURE_2D_MULTISAMPLE）**:
+
+- 为每个像素分配多个子采样点的存储空间。例如，4x MSAA 的一个像素有 4 个子采样点，每个子采样点可能存储颜色（RGB/RGBA）、覆盖信息和（可选的）深度值。
+- 内部格式（如 GL_RGB）定义了每个子采样点的颜色通道，但实际颜色值可能是共享的。
+
+**多重采样渲染缓冲（GL_RENDERBUFFER）**:
+
+- 用于深度和模板数据，每个子采样点独立存储深度值（例如 24 位）和模板值（例如 8 位）。
+- 例如，GL_DEPTH24_STENCIL8 表示每个子采样点占用 32 位。
+
+
+
+```
+  glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer);
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, intermediateFBO)
+        glBlitFramebuffer(0, 0, SCR_WIDTH, SCR_HEIGHT, 0, 0, SCR_WIDTH, SCR_HEIGHT, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+```
+
