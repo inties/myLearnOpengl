@@ -17,6 +17,7 @@
 #include<textureloader.h>
 #include<vertexAtriLoader.h>
 #include<GeometryData.h>
+#include<random>
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
@@ -85,7 +86,7 @@ int main()
     stbi_set_flip_vertically_on_load(true);
     
     // 使用相对路径加载着色器
-    std::string shaderPath = ".chapter5/Bloom/shaders/";
+    std::string shaderPath = "shaders\\";
     Shader ourShader((shaderPath + "gbuffer.vs").c_str(), (shaderPath + "gbuffer.frag").c_str());
     Shader shadingShader((shaderPath + "blinn_phong_deffered.vs").c_str(), (shaderPath + "blinn_phong_deffered.frag").c_str());
     Shader screenShader((shaderPath + "screen.vs").c_str(), (shaderPath + "screen.frag").c_str());
@@ -168,7 +169,7 @@ glBindVertexArray(0);
     unsigned int gBuffer;
     glGenFramebuffers(1, &gBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
-    unsigned int gPosition, gNormal, gAlbedoSpec;
+    unsigned int gPosition, gNormal, gAlbedoSpec, gPosition_view, gNormal_view;
     // - 位置颜色缓冲
     glGenTextures(1, &gPosition);
     glBindTexture(GL_TEXTURE_2D, gPosition);
@@ -190,9 +191,26 @@ glBindVertexArray(0);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, gAlbedoSpec, 0);
+    
+    // - 观察空间位置和深度缓冲
+    glGenTextures(1, &gPosition_view);
+    glBindTexture(GL_TEXTURE_2D, gPosition_view);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGBA, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT3, GL_TEXTURE_2D, gPosition_view, 0);
+    
+    // - 观察空间法线缓冲
+    glGenTextures(1, &gNormal_view);
+    glBindTexture(GL_TEXTURE_2D, gNormal_view);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGB, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT4, GL_TEXTURE_2D, gNormal_view, 0);
+    
     // 设置要使用的颜色缓冲
-    GLuint attachments[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
-    glDrawBuffers(3, attachments);
+    GLuint attachments[5] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3, GL_COLOR_ATTACHMENT4 };
+    glDrawBuffers(5, attachments);
     // 创建并添加深度缓冲
     unsigned int rboDepth;
     glGenRenderbuffers(1, &rboDepth);
@@ -270,6 +288,8 @@ glBindVertexArray(0);
     shadingShader.setInt("gPosition", 0);
     shadingShader.setInt("gNormal", 1);
     shadingShader.setInt("gAlbedoSpec", 2);
+    shadingShader.setInt("gPosition_view", 3);
+    shadingShader.setInt("gNormal_view", 4);
 
     screenShader.use();
     screenShader.setInt("hdrBuffer", 0);
@@ -296,6 +316,60 @@ glBindVertexArray(0);
         3.0f,  // 蓝色光源
         1.0f   // 白色光源
     };
+
+    // 生成随机旋转向量的纹理
+    std::vector<glm::vec3> ssaoNoise;
+    std::uniform_real_distribution<float> randomFloats(0.0f, 1.0f);
+    std::default_random_engine generator;
+    
+    for (unsigned int i = 0; i < 16; ++i) {
+        glm::vec3 noise(
+            randomFloats(generator) * 2.0f - 1.0f,
+            randomFloats(generator) * 2.0f - 1.0f,
+            0.0f  // 我们需要在切线空间中旋转，所以z分量为0
+        );
+        ssaoNoise.push_back(noise);
+    }
+    
+    // 创建噪声纹理
+    unsigned int noiseTexture;
+    glGenTextures(1, &noiseTexture);
+    glBindTexture(GL_TEXTURE_2D, noiseTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB32F, 4, 4, 0, GL_RGB, GL_FLOAT, &ssaoNoise[0]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    
+    // 生成半球体上的随机采样点
+    std::vector<glm::vec3> ssaoKernel;
+    for (unsigned int i = 0; i < 64; ++i) {
+        glm::vec3 sample(
+            randomFloats(generator) * 2.0f - 1.0f, 
+            randomFloats(generator) * 2.0f - 1.0f,
+            randomFloats(generator)
+        );
+        sample = glm::normalize(sample);
+        sample *= randomFloats(generator);
+        
+        // 使采样点更靠近原点
+        float scale = (float)i / 64.0f;
+        scale = 0.1f + 0.9f * (scale * scale);
+        sample *= scale;
+        ssaoKernel.push_back(sample);
+    }
+    
+    // 设置SSAO着色器参数
+    shadingShader.use();
+    shadingShader.setInt("noiseTexture", 5);
+    shadingShader.setFloat("radius", 0.5f);
+    shadingShader.setInt("SCR_WIDTH", SCR_WIDTH);
+    shadingShader.setInt("SCR_HEIGHT", SCR_HEIGHT);
+    
+    // 传递采样点数组
+    for (unsigned int i = 0; i < 64; ++i) {
+        shadingShader.setVec3("samples[" + std::to_string(i) + "]", ssaoKernel[i]);
+    }
 
     while (!glfwWindowShouldClose(window))
     {
@@ -331,6 +405,15 @@ glBindVertexArray(0);
         glBindTexture(GL_TEXTURE_2D, gNormal);
         glActiveTexture(GL_TEXTURE2);
         glBindTexture(GL_TEXTURE_2D, gAlbedoSpec);
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, gPosition_view);
+        glActiveTexture(GL_TEXTURE4);
+        glBindTexture(GL_TEXTURE_2D, gNormal_view);
+        glActiveTexture(GL_TEXTURE5);
+        glBindTexture(GL_TEXTURE_2D, noiseTexture);
+        
+        // 每帧更新投影矩阵
+        shadingShader.setMat4("projection", projection);
         
         for (unsigned int i = 0; i < NR_LIGHTS; i++) {
             shadingShader.setVec3("lights[" + std::to_string(i) + "].Position", lightPositions[i]);
@@ -404,6 +487,8 @@ glBindVertexArray(0);
     glDeleteTextures(1, &gPosition);
     glDeleteTextures(1, &gNormal);
     glDeleteTextures(1, &gAlbedoSpec);
+    glDeleteTextures(1, &gPosition_view);
+    glDeleteTextures(1, &gNormal_view);
     glDeleteTextures(1, &hdrColorBuffer);
     glDeleteRenderbuffers(1, &rboDepth);
     glDeleteRenderbuffers(1, &hdrRBO);
@@ -415,6 +500,7 @@ glBindVertexArray(0);
     glDeleteFramebuffers(2, pingpongFBO);
     glDeleteTextures(2, pingpongColorbuffers);
     glDeleteTextures(1, &bloomColorBuffer);
+    glDeleteTextures(1, &noiseTexture);
 
     glfwTerminate();
     return 0;

@@ -29,9 +29,12 @@
     <ClInclude Include="headers\vertexAtriLoader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="chapter5\Bloom\延迟渲染_hdr.cpp" />
+    <ClCompile Include="chapter5\SSAO\延迟渲染_hdr.cpp" />
     <ClCompile Include="headers\textureloader.cpp" />
     <ClCompile Include="headers\vertexAtriLoader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="chapter5\SSAO\shaders\blinn_phong_deffered.frag" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

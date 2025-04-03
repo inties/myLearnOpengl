@@ -1,3 +1,11 @@
 ﻿  延迟渲染_hdr.cpp
-E:\myLearnOpengl\chapter5\Bloom\延迟渲染_hdr.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+E:\myLearnOpengl\chapter5\SSAO\延迟渲染_hdr.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  textureloader.cpp
+  vertexAtriLoader.cpp
+E:\myLearnOpengl\headers\vertexAtriLoader.cpp(15,35): warning C4267: “参数”: 从“size_t”转换到“GLuint”，可能丢失数据
+E:\myLearnOpengl\headers\vertexAtriLoader.cpp(16,31): warning C4267: “参数”: 从“size_t”转换到“GLuint”，可能丢失数据
+E:\myLearnOpengl\headers\vertexAtriLoader.cpp(19,35): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  正在生成代码...
+glew32s.lib(glew.obj) : warning LNK4099: 未找到 PDB“”(使用“glew32s.lib(glew.obj)”或在“”中寻找)；正在链接对象，如同没有调试信息一样
+LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
   LearnOpengl.vcxproj -> E:\myLearnOpengl\LearnOpengl.exe

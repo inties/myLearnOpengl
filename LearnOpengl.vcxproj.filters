@@ -27,9 +27,6 @@
     <ClInclude Include="headers\Mesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Model.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="headers\Utils.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -42,6 +39,9 @@
     <ClInclude Include="headers\GeometryData.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="headers\Model.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="headers\textureloader.cpp">
@@ -50,8 +50,13 @@
     <ClCompile Include="headers\vertexAtriLoader.cpp">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="chapter5\Bloom\延迟渲染_hdr.cpp">
+    <ClCompile Include="chapter5\SSAO\延迟渲染_hdr.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="chapter5\SSAO\shaders\blinn_phong_deffered.frag">
+      <Filter>源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>
